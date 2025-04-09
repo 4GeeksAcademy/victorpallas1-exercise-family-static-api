@@ -37,6 +37,21 @@ def handle_hello():
                      "family": members}
     return jsonify(response_body), 200
 
+# Enviamos json con age, first_name y lucky_numbers
+@app.route('/members', methods=['POST'])
+def create_member():
+    member = request.json
+    jackson_family.add_member(member)
+    if member is not None:
+        #return  "persona creada", 200
+        return  jackson_family._members, 200
+    
+@app.route('/member/<int:id>', methods=['GET'])
+def get_single_member(id):
+    member = jackson_family.get_member(id)
+    return jsonify(member), 200
+    
+
 
 
 # This only runs if `$ python src/app.py` is executed

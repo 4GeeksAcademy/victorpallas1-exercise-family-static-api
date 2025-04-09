@@ -16,6 +16,20 @@ class FamilyStructure:
                 "last_name": last_name,
                 "age": 33,
                 "lucky_numbers": [7, 13, 22]
+            },
+            {
+                "id": self._generate_id(),
+                "first_name": "Jane",
+                "last_name": last_name,
+                "age": 35,
+                "lucky_numbers": [10, 14, 3]
+            },
+            {
+                "id": self._generate_id(),
+                "first_name": "Jimmy",
+                "last_name": last_name,
+                "age": 5,
+                "lucky_numbers": [1]
             }
         ]
 
@@ -28,7 +42,11 @@ class FamilyStructure:
     def add_member(self, member):
         ## You have to implement this method
         ## Append the member to the list of _members
-        pass
+        member["last_name"] = self.last_name
+        member["id"] = self._generate_id()
+        member["lukcky_numbers"] = list(member.get("lucky_numbers", set()))
+        self._members.append(member)
+        return member
 
     def delete_member(self, id):
         ## You have to implement this method
